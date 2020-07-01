@@ -1,1 +1,1 @@
-HeeHeeHaHaHooHooHeeHee
+ACNH API: http://acnhapi.com/doc
