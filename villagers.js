@@ -1,45 +1,12 @@
-const apiurl = 'http://acnhapi.com/v1/villagers/';
+const apiurl = 'https://acnhapi.com/v1/villagers/';
 
 var villagersList = [];
 var selectedVillagerList = [];
 var personality = ["Uchi", "Jock", "Normal", "Peppy", "Smug", "Snooty", "Lazy", "Cranky"];
 
 for(var i = 1; i <= 391; i++) {
-var api = "http://acnhapi.com/v1/villagers/".concat(i);
-
-    fetch(api)
-    .then(res => res.json())
-    .then(data => {
-        villagersList.push(data);
-        var main = document.getElementById('main');
-        var villager = document.createElement('div');
-        villager.classList.add("villager");
-
-        var img = document.createElement("img");
-        var name = document.createElement('div');
-        name.classList.add("name");
-        name.innerHTML = data.name["name-USen"];
-        
-        img.src = data.image_uri;
-        villager.appendChild(img);
-        villager.appendChild(name);
-
-        main.appendChild(villager);
-        
-        let hoverData = data.name["name-USen"];
-        img.title = hoverData;
-
-        img.onclick = function() {
-            console.log("image is clicked");
-            document.getElementById('name').innerHTML ="Name: "  + data.name["name-USen"];
-            document.getElementById('personality').innerHTML = "Personality: " + data.personality;
-            console.log(data.personality);
-            document.getElementById('birthday').innerHTML = "Birthday: " + data["birthday-string"];
-            document.getElementById('gender').innerHTML = "Gender: " + data.gender;
-        };
-
-    });//end api fetch;
-
+    var api = "https://acnhapi.com/v1/villagers/".concat(i);
+    insertVillagers(api);
 }//end for-loop
 
 
@@ -66,45 +33,20 @@ window.onload = function() {
             }
 
             for(var i = 0; i < selectedVillagerList.length; i++) {
-                var api = "http://acnhapi.com/v1/villagers/".concat(selectedVillagerList[i]);
-
-                fetch(api)
-                .then(res => res.json())
-                .then(data => {
-                    villagersList.push(data);
-                    var main = document.getElementById('main');
-                    var villager = document.createElement('div');
-                    villager.classList.add("villager");
-            
-                    var img = document.createElement("img");
-                    var name = document.createElement('div');
-                    name.classList.add("name");
-                    name.innerHTML = data.name["name-USen"];
-                    
-                    img.src = data.image_uri;
-                    villager.appendChild(img);
-                    villager.appendChild(name);
-            
-                    main.appendChild(villager);
-                    
-                    let hoverData = data.name["name-USen"];
-                    img.title = hoverData;
-            
-                    img.onclick = function() {
-                        console.log("image is clicked");
-                        document.getElementById('name').innerHTML ="Name: "  + data.name["name-USen"];
-                        document.getElementById('personality').innerHTML = "Personality: " + data.personality;
-                        console.log(data.personality);
-                        document.getElementById('birthday').innerHTML = "Birthday: " + data["birthday-string"];
-                        document.getElementById('gender').innerHTML = "Gender: " + data.gender;
-                    };
-            
-                });//end api fetch;
+                var api = "https://acnhapi.com/v1/villagers/".concat(selectedVillagerList[i]);
+                insertVillagers(api);
             }
             
         }); //end button eventListener
 
     }//end personality for-loop
+
+    document.getElementById('all-button').addEventListener("click", function() {
+        document.getElementById('main').innerHTML = "";
+        for(var i = 1; i <= 391; i++) {
+            insertVillagers("https://acnhapi.com/v1/villagers/".concat(i));
+        }
+    })
 
     //search by name
     var searchBtn = document.getElementById('search_button');
@@ -117,26 +59,41 @@ window.onload = function() {
     
 }
 
-function insertVillagers(arr) {
-    console.log("inserting villagers");
-    for(var i = 0; i < arr.length; i++) {
-        var data = arr[i];
-        var main = document.getElementById('main');
-        var main = document.getElementById('main');
-        var villager = document.createElement('div');
-        villager.classList.add("villager");
-        var img = document.createElement("img");
-        var name = document.createElement('div');
-        name.classList.add("name");
+function insertVillagers(api) {
+    fetch(api)
+        .then(res => res.json())
+        .then(data => {
+            villagersList.push(data);
+            var main = document.getElementById('main');
+            var villager = document.createElement('div');
+            villager.classList.add("villager");
 
-        name.innerHTML = data.name["name-USen"];
-        img.src = data.img_uri;
-        villager.appendChild(img);
-        villager.appendChild(name);
+            var img = document.createElement("img");
+            var name = document.createElement('div');
+            name.classList.add("name");
+            name.innerHTML = data.name["name-USen"];
+            
+            img.src = data.image_uri;
+            villager.appendChild(img);
+            villager.appendChild(name);
 
-        main.appendChild(villager);
+            main.appendChild(villager);
+            
+            let hoverData = data.name["name-USen"];
+            img.title = hoverData;
+
+            img.onclick = function() {
+                console.log("image is clicked");
+                document.getElementById('name').innerHTML ="Name: "  + data.name["name-USen"];
+                document.getElementById('personality').innerHTML = "Personality: " + data.personality;
+                console.log(data.personality);
+                document.getElementById('birthday').innerHTML = "Birthday: " + data["birthday-string"];
+                document.getElementById('gender').innerHTML = "Gender: " + data.gender;
+            };
+
+        });//end api fetch;
         
-    }
 }
+
  
 
