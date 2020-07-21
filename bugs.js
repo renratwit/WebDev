@@ -5,10 +5,10 @@ var bugsList = [];
 //insert all bugs upon loading
 for(var i = 1; i <= 391; i++) {
     var api = "https://acnhapi.com/v1/bugs/".concat(i);    
-    insertVillagers(api);
+    insertBugs(api);
 }
 
-function insertVillagers(api) {
+function insertBugs(api) {
     fetch(api)
         .then(res => res.json())
         .then(data => {
@@ -40,10 +40,9 @@ function insertVillagers(api) {
             img.onclick = function() {
                 console.log("image is clicked");
                 document.getElementById('name').innerHTML ="Name: "  + data.name["name-USen"];
-                document.getElementById('personality').innerHTML = "Personality: " + data.personality;
-                console.log(data.personality);
-                document.getElementById('birthday').innerHTML = "Birthday: " + data["birthday-string"];
-                document.getElementById('gender').innerHTML = "Gender: " + data.gender;
+                document.getElementById('personality').innerHTML = "Price: " + data.price;
+                document.getElementById('birthday').innerHTML = "Months: " + data.availability["month-northern"];
+                document.getElementById('gender').innerHTML = "Time: " + data.availability["time"];
             };
 
         });//end api fetch;
