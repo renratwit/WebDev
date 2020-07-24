@@ -13,6 +13,9 @@ body {
     justify-items: center;
     width: 68%;
     border-radius: 10px;
+    height: 89vh;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 #info {

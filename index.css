@@ -38,6 +38,28 @@ nav a:hover {
     color: aqua;
 }
 
+.fish {
+    display: inline-block;
+    flex-direction: column;
+    width: 11em;
+    text-align: center;
+}
+
+.fish #name {
+    margin-top: 0px;
+}
+
+.fish img {
+    width: 10em;
+    margin: 10px;
+    width: 2em;
+}
+
+.fish img:hover {
+    opacity: 75%;
+}
+
+
 
 
 #container button {
@@ -113,6 +135,10 @@ button {
     width: 68%;
     border-radius: 10px;
     margin: 2em;
+    height: 60vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    
 }
 #dailyBugs {
     background-color: #8CD867;
@@ -121,6 +147,9 @@ button {
     width: 68%;
     border-radius: 10px;
     margin: 2em;
+    height: 60vh;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 h2 {
     text-align: center;
