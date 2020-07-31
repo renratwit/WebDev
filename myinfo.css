@@ -1,0 +1,16 @@
+#villagers {
+    display: flex;
+    flex-direction: row;
+    background-color: chartreuse;
+}
+
+#villagers img {
+    width: 10em;
+    margin: .5vh;
+}
+
+.villager {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
