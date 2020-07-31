@@ -1,13 +1,21 @@
+const apiurl = 'https://acnhapi.com/v1/bugs/';
+
 var bugsList = [];
 
+var myBugs = [];
+
+window.onload = function() {
 //insert all bugs upon loading
-var count = 0;
-for(var i = 1; i <= 80; i++) {
-    var api = "https://acnhapi.com/v1/bugs/".concat(i);    
-    insertBugs(api);
-    count++;
+    for(var i = 1; i <= 80; i++) {
+        var api = "https://acnhapi.com/v1/bugs/".concat(i);    
+        insertBugs(api);
+    }
+
+    if(localStorage.getItem("myBugs") === null) {
+        localStorage.setItem("myBugs", myBugs); 
+        console.log("here-bugs");
+    }
 }
-console.log("total: " + count);
 
 function insertBugs(api) {
     fetch(api)
@@ -23,18 +31,18 @@ function insertBugs(api) {
             var name = document.createElement('div');
             name.classList.add("name");
 
-            //set the name and image of bug
+            //set the name and image of villager
             name.innerHTML = data.name["name-USen"];
             img.src = data.image_uri;
 
-            //append the name and image to the bug element
+            //append the name and image to the villager element
             bug.appendChild(img);
             bug.appendChild(name);
 
             //append the bug to the main area of the page
             main.appendChild(bug);
             
-            //display info when hovering
+            //display infor when hovering
             let hoverData = data.name["name-USen"];
             img.title = hoverData;
 
@@ -44,9 +52,18 @@ function insertBugs(api) {
                 document.getElementById('price').innerHTML = "Price: " + data.price;
                 document.getElementById('months').innerHTML = "Months: " + data.availability["month-northern"];
                 document.getElementById('time').innerHTML = "Time: " + data.availability["time"];
+
+                document.getElementById("add").onclick = function() {
+                    if(!localStorage.myBugs.includes(data.id) && myBugs.length <= 80) {
+                        myBugs.push(data.id);
+                        console.log(data.id);
+                        localStorage.setItem("myBugs", JSON.stringify(myBugs));
+                    } else { console.log("already in or limit exceeded") }
+                }
             };
+
+            
 
         });//end api fetch;
         
 }
-
