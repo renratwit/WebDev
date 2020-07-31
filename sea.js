@@ -9,7 +9,7 @@ for(var i = 1;i<=40;i++){
 
 window.onload = function() {
     document.getElementById("all-button").addEventListener("click", function(){
-        document.getElementById("main").innerHTML="";
+        document.getElementById("here").innerHTML="";
         for(var i=1;i<=40;i++){
             insertSea(apiurl.concat(i));
         }
@@ -19,7 +19,7 @@ window.onload = function() {
     var search = document.getElementById("search");
 
     searchBtn.addEventListener("click", function(){
-        document.getElementById("main").innerHTML="";
+        document.getElementById("here").innerHTML="";
         for(var i=0;i<80;i++){
             if(seaList[i].name["name-USen"].includes(search.value.toLowerCase())){
                 insertSea(apiurl.concat(seaList[i].id));
@@ -34,7 +34,7 @@ function insertSea(api){
         .then(data => {
             seaList.push(data);
 
-            var main = document.getElementById("main");
+            var main = document.getElementById("here");
             var sea = document.createElement("div");
             sea.classList.add("sea");
 
@@ -47,7 +47,7 @@ function insertSea(api){
             sea.appendChild(img);
             sea.appendChild(name);
 
-            document.getElementById("push").appendChild(sea);
+            document.getElementById("here").appendChild(sea);
 
             let hoverData = data.name["name-USen"];
             img.title = hoverData;

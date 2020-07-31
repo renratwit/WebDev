@@ -9,7 +9,7 @@ for(var i = 1;i<=80;i++){
 
 window.onload = function() {
     document.getElementById("all-button").addEventListener("click", function(){
-        document.getElementById("main").innerHTML="";
+        document.getElementById("push").innerHTML="";
         for(var i=1;i<=80;i++){
             insertFish(apiurl.concat(i));
         }
@@ -19,7 +19,7 @@ window.onload = function() {
     var search = document.getElementById("search");
 
     searchBtn.addEventListener("click", function(){
-        document.getElementById("main").innerHTML="";
+        document.getElementById("here").innerHTML="";
         for(var i=0;i<80;i++){
             if(fishList[i].name["name-USen"].includes(search.value.toLowerCase())){
                 insertFish(apiurl.concat(fishList[i].id));
@@ -34,7 +34,7 @@ function insertFish(api){
         .then(data => {
             fishList.push(data);
 
-            var main = document.getElementById("main");
+            var main = document.getElementById("here");
             var fish = document.createElement("div");
             fish.classList.add("fish");
 
@@ -47,7 +47,7 @@ function insertFish(api){
             fish.appendChild(img);
             fish.appendChild(name);
 
-            document.getElementById("push").appendChild(fish);
+            document.getElementById("here").appendChild(fish);
 
             let hoverData = data.name["name-USen"];
             img.title = hoverData;
