@@ -1,5 +1,3 @@
-var bugsList = [];
-
 //insert all bugs upon loading
 var date = new Date();
 var month = date.getMonth() + 1;
