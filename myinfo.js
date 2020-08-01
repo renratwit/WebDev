@@ -1,5 +1,4 @@
 var local = localStorage.user;
-//console.log(JSON.parse(local));
 
 var villagerAPI = 'https://acnhapi.com/v1/villagers/';
 
@@ -20,8 +19,6 @@ function insertVillagers(api) {
     fetch(api)
         .then(res => res.json())
         .then(data => {
-            //villagersList.push(data);
-
             //create the necessary HTML objects for each villager
             var main = document.getElementById('villagers');
             var villager = document.createElement('div');
