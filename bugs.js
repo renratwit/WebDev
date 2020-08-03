@@ -2,14 +2,24 @@ const apiurl = 'https://acnhapi.com/v1/bugs/';
 
 var bugsList = [];
 
+
 var myBugs;
 
 window.onload = function() {
     
+
+
+window.onload = function() {
+
 //insert all bugs upon loading
     for(var i = 1; i <= 80; i++) {
         var api = "https://acnhapi.com/v1/bugs/".concat(i);    
         insertBugs(api);
+    }
+
+    if(localStorage.getItem("myBugs") === null) {
+        localStorage.setItem("myBugs", myBugs); 
+        console.log("here-bugs");
     }
 
 }
@@ -53,6 +63,7 @@ function insertBugs(api) {
                 document.getElementById("add").onclick = function() {
                     myBugs = (localStorage.hasOwnProperty("myBugs")) ? JSON.parse(localStorage.myBugs) : [];
                     localStorage.setItem("myBugs", myBugs);
+
                     if(!localStorage.myBugs.includes(data.id) && myBugs.length <= 80) {
                         myBugs.push(data.id);
                         console.log(data.id);

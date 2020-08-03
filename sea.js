@@ -2,7 +2,9 @@ const apiurl = 'https://acnhapi.com/v1/sea/';
 
 var seaList = [];
 
+
 var mySea;
+
 
 for(var i = 1;i<=40;i++){
     var api = apiurl.concat(i);
@@ -27,7 +29,9 @@ window.onload = function() {
                 insertSea(apiurl.concat(seaList[i].id));
             }
         }
+
     });
+
 }
 
 function insertSea(api){
@@ -86,6 +90,7 @@ function insertSea(api){
                         localStorage.setItem("mySea", JSON.stringify(mySea));
                     } else { console.log("already in or limit exceeded") }
                 }
+
             };
         });
 }
