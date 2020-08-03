@@ -1,9 +1,7 @@
 const apiurl = 'https://acnhapi.com/v1/fish/';
 
 var fishList = [];
-
 var myFish;
-
 
 
 for(var i = 1;i<=80;i++){
@@ -81,7 +79,6 @@ function insertFish(api){
                 document.getElementById("price").innerHTML = "Price: "+ data.price;
                 document.getElementById("cj-price").innerHTML = "CJ's Price: "+(data.price*1.5);
 
-
                 document.getElementById("add").onclick = function() {
                     myFish = (localStorage.hasOwnProperty("myFish")) ? JSON.parse(localStorage.myFish) : [];
                     localStorage.setItem("myFish", myFish);
@@ -91,7 +88,6 @@ function insertFish(api){
                         localStorage.setItem("myFish", JSON.stringify(myFish));
                     } else { console.log("already in or limit exceeded") }
                 }
-
             };
         });
 }
