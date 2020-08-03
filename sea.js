@@ -84,7 +84,10 @@ function insertSea(api){
                         mySea.push(data.id);
                         console.log(data.id);
                         localStorage.setItem("mySea", JSON.stringify(mySea));
-                    } else { console.log("already in or limit exceeded") }
+                    } else { 
+                        localStorage.setItem("mySea", "[" + localStorage.mySea + "]");
+                        console.log("already in or limit exceeded") 
+                    }
                 }
             };
         });

@@ -119,7 +119,9 @@ function insertVillagers(api) {
                         myVillagers.push(data.id);
                         console.log(data.id);
                         localStorage.setItem("myVillagers", JSON.stringify(myVillagers));
-                    } else { console.log("already in or limit exceeded") }
+                    } else { 
+                        localStorage.setItem("myVillagers", "[" + localStorage.myVillagers + "]");
+                        console.log("already in or limit exceeded") }
                 }
             };
 

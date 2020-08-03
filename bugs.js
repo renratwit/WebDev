@@ -57,7 +57,9 @@ function insertBugs(api) {
                         myBugs.push(data.id);
                         console.log(data.id);
                         localStorage.setItem("myBugs", JSON.stringify(myBugs));
-                    } else { console.log("already in or limit exceeded") }
+                    } else { 
+                        localStorage.setItem("myBugs", "[" + localStorage.myBugs + "]");
+                        console.log("already in or limit exceeded") }
                 }
             };
 

@@ -80,13 +80,18 @@ function insertFish(api){
                 document.getElementById("cj-price").innerHTML = "CJ's Price: "+(data.price*1.5);
 
                 document.getElementById("add").onclick = function() {
+                    //if localStorage has the array, myFish is the array - otherwise, we have an empty array
                     myFish = (localStorage.hasOwnProperty("myFish")) ? JSON.parse(localStorage.myFish) : [];
                     localStorage.setItem("myFish", myFish);
                     if(!localStorage.myFish.includes(data.id) && myFish.length <= 80) {
                         myFish.push(data.id);
                         console.log(data.id);
                         localStorage.setItem("myFish", JSON.stringify(myFish));
-                    } else { console.log("already in or limit exceeded") }
+                    } else { 
+                        console.log(localStorage);
+                        localStorage.setItem("myFish", "[" + localStorage.myFish + "]");
+                        console.log("already in or limit exceeded");
+                    }
                 }
             };
         });
